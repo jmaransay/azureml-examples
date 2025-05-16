@@ -3,11 +3,11 @@ name: sklearn-deployment-script
 endpoint_name: my-endpoint
 model:
   name: mir-sample-sklearn-mlflow-model
-  version: 1
+  version: 2
   path: sklearn-diabetes/model
   type: mlflow_model
 environment:
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04
   conda_file: sklearn-diabetes/environment/conda.yaml
 code_configuration:
     code: sklearn-diabetes/src

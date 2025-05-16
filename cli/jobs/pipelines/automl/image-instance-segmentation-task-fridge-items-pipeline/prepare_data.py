@@ -40,7 +40,7 @@ def upload_data_and_create_jsonl_mltable_files(ml_client, dataset_parent_dir):
     os.makedirs(dataset_parent_dir, exist_ok=True)
 
     # download data
-    download_url = "https://cvbp-secondary.z19.web.core.windows.net/datasets/object_detection/odFridgeObjectsMask.zip"
+    download_url = "https://automlsamplenotebookdata-adcuc7f7bqhhh8a4.b02.azurefd.net/image-instance-segmentation/odFridgeObjectsMask.zip"
 
     # Extract current dataset name from dataset url
     dataset_name = os.path.basename(download_url).split(".")[0]
@@ -67,7 +67,7 @@ def upload_data_and_create_jsonl_mltable_files(ml_client, dataset_parent_dir):
         path=dataset_dir,
         type=AssetTypes.URI_FOLDER,
         description="Fridge-items images instance segmentation",
-        name="fridge-items-images-instance-segmentation",
+        name="fridge-items-images-is-p",
     )
 
     uri_folder_data_asset = ml_client.data.create_or_update(my_data)
@@ -79,9 +79,13 @@ def upload_data_and_create_jsonl_mltable_files(ml_client, dataset_parent_dir):
 
     print("Installing scikit-image and simplification package")
     subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", "scikit-image==0.19.3"]
+        [sys.executable, "-m", "pip", "install", "scikit-image==0.25.0"]
     )
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "simplification"])
+    # Install numpy version compatible with scikit-image==0.25.0.
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4"])
+    subprocess.check_call(
+        [sys.executable, "-m", "pip", "install", "simplification==0.7.12"]
+    )
     print("done")
 
     print("Creating jsonl files")
