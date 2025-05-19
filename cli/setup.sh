@@ -25,9 +25,11 @@ az extension add -n ml -y
 
 ## For backward compatibility - running on old subscription
 # <set_variables>
+# Resource group name:
 GROUP="ejemplo_nyc_taxi"
-LOCATION="spaincentral"
-WORKSPACE="ejemplo_nyc_ws"
+LOCATION="westeurope"
+# Workspace name in Azure ML
+WORKSPACE="mlw-mlopslite-ao04prod"
 # </set_variables>
 
 # If RESOURCE_GROUP_NAME is empty, the az configure is pending.
